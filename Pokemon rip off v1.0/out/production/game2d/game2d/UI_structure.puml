@@ -1,0 +1,441 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "game2d.UI",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_100526016 { 
+   	label=items
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   ITM_Cycle100526016[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ITM_Cycle</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ITM_Pokeball100526016[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ITM_Pokeball</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_110363525 { 
+   	label=tiles
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   TileManager110363525[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TileManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   allCords: ArrayList&lt;ArrayList&lt;Integer&gt;&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   gp: GamePanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   mapTileNum: int[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   tile: Tile[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ draw(g2: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTileImage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ loadMap(filePath: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1253237276 { 
+   	label=game2d
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   CollisionChecker1253237276[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CollisionChecker</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   gp: GamePanel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ checkObject(entity: Entity, player: boolean): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkTile(entity: Entity)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GamePanel1253237276[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GamePanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   FPS: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   bagState: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   battleState: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   cChecker: CollisionChecker [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   entityList: ArrayList&lt;Entity&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   gameState: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   gameThread: Thread [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   iSetter: ItemSetter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   item: Entity[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   keyH: KeyHandler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   maxScreenCol: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   maxScreenRow: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   maxWorldCol: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   maxWorldRow: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   originalTileSize: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   playState: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   player: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   scale: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   screenHeight: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   screenWidth: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   tileM: TileManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   tileSize: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   titleState: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   ui: UI [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   winState: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   worldHeight: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   worldWidth: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ paintComponent(g: Graphics)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ run()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startGameThread()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ItemSetter1253237276[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ItemSetter</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   gp: GamePanel [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+KeyHandler1253237276[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)KeyHandler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   aPressed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   downPressed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   enterPressed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   gp: GamePanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   leftPressed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   pPresseed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   rightPressed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   upPressed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   zPressed: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ keyPressed(e: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ keyReleased(e: KeyEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ keyTyped(e: KeyEvent)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UI1253237276[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   Image: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   arial_40: Font [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   ballImage: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   g2: Graphics2D [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   gp: GamePanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   keyH: KeyHandler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   message: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   messageCount: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   messageOn: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   spotCol: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   spotRow: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ battleScreen()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ draw(g2: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ drawSubWindow(x: int, y: int, width: int, height: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getXCentreText(text: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ openBag()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ playerPokemonDetails()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showMessage(text: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ wildPokemonDetail()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ winGame()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1298275357 { 
+   	label=entity
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Entity1298275357[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Entity</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   collision: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   collisionOn: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   description: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   direction: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   down1: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   down2: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   downc1: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   downc2: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   gp: GamePanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   image: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   image1: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   left1: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   left2: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   leftc1: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   leftc2: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   pHP: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   pLevel: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   right1: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   right2: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   rightc1: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   rightc2: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   solidArea: Rectangle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   solidAreaDefaultX: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   solidAreaDefaultY: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   speed: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   spriteCounter: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   spriteNum: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   up1: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   up2: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   upc1: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   upc2: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   worldX: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   worldY: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ attack(target: Entity, damage: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ draw(g2: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setUp(imagePath: String, imageName: String): BufferedImage</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takeDamage(damage: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateDescription()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Player1298275357[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Player</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   gp: GamePanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   hasCycle: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   inBattle: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   keyH: KeyHandler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   newNumBalls: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   numBalls: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   onCycle: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   playerPoke: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   playerPokemons: ArrayList&lt;Entity&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   screenX: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   screenY: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   wildPokemon: ArrayList&lt;Entity&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ attack()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ draw(g2: Graphics2D)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPlayerImage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pickUpIItem(i: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_579519008 { 
+   	label=Pokemons
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Charizard579519008[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Charizard</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Jigglypuff579519008[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Jigglypuff</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+pikachu579519008[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)pikachu</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+CollisionChecker1253237276 -> GamePanel1253237276[label="gp
+[0..1]"];
+Entity1298275357 -> Charizard579519008[arrowhead=none, arrowtail=empty, dir=both];
+Entity1298275357 -> GamePanel1253237276[label="gp
+[0..1]"];
+Entity1298275357 -> ITM_Cycle100526016[arrowhead=none, arrowtail=empty, dir=both];
+Entity1298275357 -> ITM_Pokeball100526016[arrowhead=none, arrowtail=empty, dir=both];
+Entity1298275357 -> Jigglypuff579519008[arrowhead=none, arrowtail=empty, dir=both];
+Entity1298275357 -> Player1298275357[arrowhead=none, arrowtail=empty, dir=both];
+Entity1298275357 -> pikachu579519008[arrowhead=none, arrowtail=empty, dir=both];
+GamePanel1253237276 -> CollisionChecker1253237276[label="cChecker
+[0..1]"];
+GamePanel1253237276 -> Entity1298275357[label="entityList
+[0..*]"];
+GamePanel1253237276 -> Entity1298275357[label="item
+[0..*]"];
+GamePanel1253237276 -> ItemSetter1253237276[label="iSetter
+[0..1]"];
+GamePanel1253237276 -> KeyHandler1253237276[label="keyH
+[0..1]"];
+GamePanel1253237276 -> TileManager110363525[label="tileM
+[0..1]"];
+GamePanel1253237276 -> UI1253237276[label="ui
+[0..1]"];
+ItemSetter1253237276 -> GamePanel1253237276[label="gp
+[0..1]"];
+KeyHandler1253237276 -> GamePanel1253237276[label="gp
+[0..1]"];
+Player1298275357 -> Entity1298275357[label="playerPokemons
+[0..*]"];
+Player1298275357 -> Entity1298275357[label="wildPokemon
+[0..*]"];
+Player1298275357 -> GamePanel1253237276[label="gp
+[0..1]"];
+Player1298275357 -> KeyHandler1253237276[label="keyH
+[0..1]"];
+TileManager110363525 -> GamePanel1253237276[label="gp
+[0..1]"];
+UI1253237276 -> GamePanel1253237276[label="gp
+[0..1]"];
+UI1253237276 -> KeyHandler1253237276[label="keyH
+[0..1]"];
+    
+}
+@enduml
