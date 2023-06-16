@@ -5,8 +5,8 @@ It is well a pokemon rip off, a 2D adventure game of some sort where a player ha
 
 ## How to play
 W,A,S,D to move
-P to open bag
-Z to get on/off cycle
+\n P to open bag
+\n Z to get on/off cycle
 battle controls are shown in battle screen
 
 ## Links
