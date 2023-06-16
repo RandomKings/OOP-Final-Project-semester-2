@@ -1,9 +1,9 @@
 # Object Oriented Programming - Final Project
 
-##Pokemon Rip-off
+## Pokemon Rip-off
 It is well a pokemon rip off, a 2D adventure game of some sort where a player has to look for pokemon and battle another pokemon.
 
-##How to play
+## How to play
 W,A,S,D to move
 P to open bag
 Z to get on/off cycle
